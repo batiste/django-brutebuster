@@ -24,7 +24,11 @@ def protect_and_serve(auth_func):
         """
         user = kwargs.get('username', '')
         if not user:
-            raise ValueError('BruteBuster cannot work with authenticate functions that do not include "username" as an argument')
+            # We need to deactivate this exception due to auth2 which doesn't 
+            # use username in the authentication function
+            return None
+            # raise ValueError ('BruteBuster cannot work with authenticate 
+            # functions that do not include 'username' as an argument') "
 
         request = get_request()
         if request:
